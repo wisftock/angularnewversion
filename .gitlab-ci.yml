@@ -36,8 +36,9 @@ install-dependencies:
 #ejecutan las pruebas unitarias
 test:
   stage: test
-  image: testim/node-chrome
+  image: timbru31/node-chrome
   script:
+    - npm i -g @angular/cli
     - npm test -- --browsers=ChromeHeadless --watch=false
   # especificar que rama ejecutara este stage
   only:
