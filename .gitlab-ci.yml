@@ -87,12 +87,12 @@ build:
     policy: pull-push
 
 # nose ejecuta por falta de servidor
-deploy:
-  stage: deploy
-  image: alpine
-  before_script:
-    - apk add zip
-    - apk add
+#deploy:
+#  stage: deploy
+#  image: alpine
+#  before_script:
+#    - apk add zip
+#    - apk add...
 
 #sonarqube
 #sonarqube_scan:
