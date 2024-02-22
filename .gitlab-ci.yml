@@ -40,6 +40,7 @@ test:
   script:
     - npm i -g @angular/cli
     - npm run test --no-watch --no-progress --browsers=ChromeHeadless
+    - karma start --single-run --reporters="dots,coverage"
   # especificar que rama ejecutara este stage
   only:
     - master
