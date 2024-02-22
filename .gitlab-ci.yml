@@ -20,13 +20,13 @@ stages:
 #  - npm i -g @angular/cli
 
 # instala las dependencias
-install-dependencies:
-  stage: dependencies
-  image: node
-  script:
-    - npm i
-  only:
-    - master
+#install-dependencies:
+#  stage: dependencies
+#  image: node
+#  script:
+#    - npm i
+#  only:
+#    - master
 
 #ejecutan las pruebas unitarias
 #test:
