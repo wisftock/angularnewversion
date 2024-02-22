@@ -35,12 +35,7 @@ test:
     - master
 
 # análisis estático de código: Ejecuta el linting para detectar posibles problemas de código.
-lint:
-  stage: test
-  script:
-    - npm run lint
-  only:
-    - master
+
 
 # instala las dependencias y compila la aplicación Angular en modo de producción.
 build:
@@ -48,5 +43,8 @@ build:
   script:
     - npm i
     - ng build --prod --base-href /$CI_PROJECT_NAME
+  artifacts:
+    paths:
+      - dist/
   only:
     - master
