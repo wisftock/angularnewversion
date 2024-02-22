@@ -59,6 +59,7 @@ install-dependencies:
 # instala las dependencias y compila la aplicación Angular en modo de producción.
 build:
   stage: build
+  image: node:18
   script:
     - npm i -g @angular/cli
     - ng build
