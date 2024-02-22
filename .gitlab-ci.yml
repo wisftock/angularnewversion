@@ -1,0 +1,13 @@
+stages:
+  - dependencies
+  - test
+  - build
+  - deploy
+
+install-dependencies:
+  stage: dependencies
+  image: node
+  script:
+    - npm i
+  only:
+    - master
