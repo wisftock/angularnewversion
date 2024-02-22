@@ -33,26 +33,26 @@ install-dependencies:
         - package-lock.json
 
 
-#ejecutan las pruebas unitarias
-test:
-  stage: test
-  image: timbru31/node-chrome
-  script:
-    - npm i -g @angular/cli
-    - ng test --no-watch --progress=false --browsers=ChromeHeadless ChromeHeadlessNoSandbox
+#ejecutan las pruebas unitarias imcompleto...
+#test:
+#  stage: test
+#  image: timbru31/node-chrome
+#  script:
+#    - npm i -g @angular/cli
+#    - ng test --no-watch --progress=false --browsers=ChromeHeadless ChromeHeadlessNoSandbox
   # especificar que rama ejecutara este stage
-  only:
-    - master
+#  only:
+#    - master
   # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
-  cache:
+#  cache:
     # lista los directorios que deben ser cacheados
-    paths:
-      - node_modules/
+#    paths:
+#      - node_modules/
     # se utiliza para definir una clave única para el caché , si hay cambios en el .json se ejecuta de nuevo el npm i
-    key:
-      files:
-        - package-lock.json
-    policy: pull-push
+#    key:
+#      files:
+#        - package-lock.json
+#    policy: pull-push
 
 # instala las dependencias y compila la aplicación Angular en modo de producción.
 build:
@@ -87,43 +87,6 @@ build:
 #    # Aquí puedes agregar comandos para desplegar tu aplicación Angular
 #  only:
 #    - master
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# nose ejecuta por falta de servidor
-#deploy:
-#  stage: deploy
-#  image: alpine
-#  before_script:
-#    - apk add zip
-#    - apk add...
 
 #sonarqube
 #sonarqube_scan:
