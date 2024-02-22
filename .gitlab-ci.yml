@@ -15,9 +15,9 @@ stages:
   - sonarqube-check
   - sonarqube-vulnerability-report
 
-#d efine los comandos que se ejecutarán antes de cada tarea
-before_script:
-  - npm i -g @angular/cli
+# define los comandos que se ejecutarán antes de cada tarea
+#before_script:
+#  - npm i -g @angular/cli
 
 # instala las dependencias
 install-dependencies:
