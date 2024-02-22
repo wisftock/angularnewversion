@@ -1,13 +1,52 @@
+# especifica la imagen de Docker que se utilizará para ejecutar los scripts
+image: node:latest
+
+# se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
+cache:
+  paths:
+    - node_modules/
+
+# define las etapas de tu pipeline de CI/CD
 stages:
   - dependencies
   - test
   - build
   - deploy
 
+#d efine los comandos que se ejecutarán antes de cada tarea
+before_script:
+  - npm i -g @angular/cli
+
+# instala las dependencias
 install-dependencies:
   stage: dependencies
   image: node
   script:
     - npm i
+  only:
+    - master
+
+#ejecutan las pruebas unitarias
+test:
+  stage: test
+  script:
+    - npm run test
+  only:
+    - master
+
+# análisis estático de código: Ejecuta el linting para detectar posibles problemas de código.
+lint:
+  stage: test
+  script:
+    - npm run lint
+  only:
+    - master
+
+# instala las dependencias y compila la aplicación Angular en modo de producción.
+build:
+  stage: build
+  script:
+    - npm i
+    - ng build --prod --base-href /$CI_PROJECT_NAME
   only:
     - master
