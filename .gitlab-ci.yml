@@ -51,6 +51,7 @@ test:
     key:
       files:
         - package-lock.json
+    policy: pull-push
 
 # análisis estático de código: Ejecuta el linting para detectar posibles problemas de código.
 #lint:
