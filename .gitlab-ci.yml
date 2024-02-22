@@ -1,5 +1,5 @@
 # especifica la imagen de Docker que se utilizará para ejecutar los scripts
-image: node:latest
+image: node:18
 
 # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
 cache:
