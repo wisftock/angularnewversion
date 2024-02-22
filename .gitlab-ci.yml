@@ -39,7 +39,7 @@ test:
   image: timbru31/node-chrome
   script:
     - npm i -g @angular/cli
-    - npm test -- --browsers=ChromeHeadless --watch=false
+    - npm test
   # especificar que rama ejecutara este stage
   only:
     - master
@@ -80,7 +80,13 @@ build:
       - $CI_PROJECT_DIR/dist/
     policy: pull-push
 
-
+#deploy:
+#  stage: deploy
+#  script:
+#    - echo "Deploy to production..."
+#    # Aquí puedes agregar comandos para desplegar tu aplicación Angular
+#  only:
+#    - master
 
 
 
