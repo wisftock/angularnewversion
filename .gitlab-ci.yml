@@ -1,12 +1,3 @@
-# se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
-#cache:
-  # se refiere a la rama del commit actual
-#  key: ${CI_COMMIT_REF_SLUG}
-  # lista los directorios que deben ser cacheados
-#  paths:
-#    - node_modules/
-
-
 # define las etapas de tu pipeline de CI/CD
 stages:
   - dependencies
@@ -33,20 +24,33 @@ install-dependencies:
     - master
   # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
   cache:
+    # lista los directorios que deben ser cacheados
     paths:
       - node_modules/
+    # se utiliza para definir una clave única para el caché
     key:
       files:
         - package-lock.json
 
 
 #ejecutan las pruebas unitarias
-#test:
-#  stage: test
-#  script:
-#    - npm run test
-#  only:
-#    - master
+test:
+  stage: test
+  image: testim/node-chrome
+  script:
+    - npm run test -- --browsers=ChromeHeadless --watch=false
+  # especificar que rama ejecutara este stage
+  only:
+    - master
+  # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
+  cache:
+    # lista los directorios que deben ser cacheados, si hay cambios en el .json se ejecuta de nuevo el npm i
+    paths:
+      - node_modules/
+    # se utiliza para definir una clave única para el caché
+    key:
+      files:
+        - package-lock.json
 
 # análisis estático de código: Ejecuta el linting para detectar posibles problemas de código.
 #lint:
@@ -63,15 +67,20 @@ build:
   script:
     - npm i -g @angular/cli
     - ng build
+  # archivo o paquete generado durante el proceso de desarrollo de software
   artifacts:
     paths:
       - $CI_PROJECT_DIR/dist/
+  # especificar que rama ejecutara este stage
   only:
     - master
+  # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores
   cache:
+    # se utiliza para definir una clave única para el caché
     key:
       files:
         - package-lock.json
+    # lista los directorios que deben ser cacheados
     paths:
       - node_modules
       - $CI_PROJECT_DIR/dist/
