@@ -45,16 +45,16 @@ install-dependencies:
 #    - master
 
 # instala las dependencias y compila la aplicación Angular en modo de producción.
-build:
-  stage: build
-  script:
-    - npm i
-    - ng build --prod --base-href /$CI_PROJECT_NAME
-  artifacts:
-    paths:
-      - dist/
-  only:
-    - master
+#build:
+#  stage: build
+#  script:
+#    - npm i
+#    - ng build --prod --base-href /$CI_PROJECT_NAME
+#  artifacts:
+#    paths:
+#      - dist/
+#  only:
+#    - master
 
 
 #sonarqube
