@@ -39,7 +39,7 @@ test:
   image: timbru31/node-chrome
   script:
     - npm i -g @angular/cli
-    - npm test
+    - npm run test --no-watch --no-progress --browsers=ChromeHeadless
   # especificar que rama ejecutara este stage
   only:
     - master
