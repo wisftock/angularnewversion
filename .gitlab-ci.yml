@@ -27,7 +27,7 @@ install-dependencies:
     # lista los directorios que deben ser cacheados
     paths:
       - node_modules/
-    # se utiliza para definir una clave única para el caché
+    # se utiliza para definir una clave única para el caché , si hay cambios en el .json se ejecuta de nuevo el npm i
     key:
       files:
         - package-lock.json
@@ -38,16 +38,16 @@ test:
   stage: test
   image: testim/node-chrome
   script:
-    - npm run test -- --browsers=ChromeHeadless --watch=false
+    - ng test -- --browsers=ChromeHeadless --watch=false
   # especificar que rama ejecutara este stage
   only:
     - master
   # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
   cache:
-    # lista los directorios que deben ser cacheados, si hay cambios en el .json se ejecuta de nuevo el npm i
+    # lista los directorios que deben ser cacheados
     paths:
       - node_modules/
-    # se utiliza para definir una clave única para el caché
+    # se utiliza para definir una clave única para el caché , si hay cambios en el .json se ejecuta de nuevo el npm i
     key:
       files:
         - package-lock.json
@@ -85,6 +85,14 @@ build:
       - node_modules
       - $CI_PROJECT_DIR/dist/
     policy: pull-push
+
+# nose ejecuta por falta de servidor
+deploy:
+  stage: deploy
+  image: alpine
+  before_script:
+    - apk add zip
+    - apk add
 
 #sonarqube
 #sonarqube_scan:
