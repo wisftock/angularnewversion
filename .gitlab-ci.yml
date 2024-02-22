@@ -1,3 +1,12 @@
+# se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
+#cache:
+  # se refiere a la rama del commit actual
+#  key: ${CI_COMMIT_REF_SLUG}
+  # lista los directorios que deben ser cacheados
+#  paths:
+#    - node_modules/
+
+
 # define las etapas de tu pipeline de CI/CD
 stages:
   - dependencies
@@ -48,17 +57,24 @@ install-dependencies:
 #    - master
 
 # instala las dependencias y compila la aplicación Angular en modo de producción.
-#build:
-#  stage: build
-#  script:
-#    - npm i
-#    - ng build --prod --base-href /$CI_PROJECT_NAME
-#  artifacts:
-#    paths:
-#      - dist/
-#  only:
-#    - master
-
+build:
+  stage: build
+  script:
+    - npm i -g @angular/cli
+    - ng build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/dist/
+  only:
+    - master
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
+      - $CI_PROJECT_DIR/dist/
+    policy: pull-push
 
 #sonarqube
 #sonarqube_scan:
