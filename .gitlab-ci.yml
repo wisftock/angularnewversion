@@ -38,7 +38,7 @@ test:
   stage: test
   image: testim/node-chrome
   script:
-    - ng test -- --browsers=ChromeHeadless --watch=false
+    - npm test -- --browsers=ChromeHeadless --watch=false
   # especificar que rama ejecutara este stage
   only:
     - master
@@ -52,14 +52,6 @@ test:
       files:
         - package-lock.json
     policy: pull-push
-
-# análisis estático de código: Ejecuta el linting para detectar posibles problemas de código.
-#lint:
-#  stage: test
-#  script:
-#    - npm run lint
-#  only:
-#    - master
 
 # instala las dependencias y compila la aplicación Angular en modo de producción.
 build:
@@ -86,6 +78,37 @@ build:
       - node_modules
       - $CI_PROJECT_DIR/dist/
     policy: pull-push
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # nose ejecuta por falta de servidor
 #deploy:
