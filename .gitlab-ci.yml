@@ -1,18 +1,10 @@
-# especifica la imagen de Docker que se utilizará para ejecutar los scripts
-image: node:18
-
-# se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
-cache:
-  paths:
-    - node_modules/
-
 # define las etapas de tu pipeline de CI/CD
 stages:
   - dependencies
   - test
   - build
   - deploy
-  - sonarqube_scan
+#  - sonarqube_scan
   # - sonarqube-check
   # - sonarqube-vulnerability-report
 
@@ -21,13 +13,23 @@ stages:
 #  - npm i -g @angular/cli
 
 # instala las dependencias
-#install-dependencies:
-#  stage: dependencies
-#  image: node
-#  script:
-#    - npm i
-#  only:
-#    - master
+install-dependencies:
+  stage: dependencies
+  # especifica la imagen de Docker que se utilizará para ejecutar los scripts
+  image: node:18
+  script:
+    - npm i
+  # especificar que rama ejecutara este stage
+  only:
+    - master
+  # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
+  cache:
+    paths:
+      - node_modules/
+    key:
+      files:
+        - package-lock.json
+
 
 #ejecutan las pruebas unitarias
 #test:
@@ -59,11 +61,11 @@ stages:
 
 
 #sonarqube
-sonarqube_scan:
-  stage: sonarqube_scan
-  image: sonarsource/sonar-scanner-cli:latest
-  script:
-    - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST_URL
+#sonarqube_scan:
+#  stage: sonarqube_scan
+#  image: sonarsource/sonar-scanner-cli:latest
+#  script:
+#    - sonar-scanner -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=$SONAR_HOST_URL
 
 # sonarqube-check:
 #   stage: sonarqube-check
