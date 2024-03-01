@@ -8,10 +8,9 @@ describe('ChagenDetectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChagenDetectionComponent]
-    })
-    .compileComponents();
-    
+      imports: [ChagenDetectionComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ChagenDetectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
