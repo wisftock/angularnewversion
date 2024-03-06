@@ -1,1 +1,19 @@
-<p>control-flow works!</p>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="p-5">
+    <p class="text-2xl">Condicional if</p>
+
+    <h2 class="m-5">{{ showContent() }}</h2>
+    <button
+      class="bg-green-400 py-1 px-5 rounded-[20px]"
+      (click)="toggleContent()"
+    >
+      Click me!
+    </button>
+
+    @if(showContent()){
+    <p>mostrar texto</p>
+    } @else{
+    <p>ocultar texto</p>
+    }
+  </div>
+</section>
