@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './user-loader.component.html',
-  styleUrl: './user-loader.component.css'
+  styleUrl: '',
 })
-export class UserLoaderComponent {
-
-}
+export class UserLoaderComponent {}

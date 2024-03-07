@@ -1,1 +1,81 @@
-<p>defer-option works!</p>
+<app-title title="Defer Triggers" />
+
+<section class="">
+  <h1 class="text-xl">Interacciones</h1>
+  <hr class="my-2" />
+
+  @defer(on interaction){
+  <app-heavy-loaders-fast cssClass="bg-blue-500/50 h-20">
+    <span>On Interaction</span>
+  </app-heavy-loaders-fast>
+  } @placeholder{
+  <div class="w-full h-20 bg-purple-100">Click en el div</div>
+  }
+</section>
+
+<section class="mt-7">
+  <h1 class="text-xl">Interacciones</h1>
+  <hr class="my-2" />
+  <button #btnInteraction class="p-2 mb-4 bg-orange-400 rounded">
+    Click me!
+  </button>
+
+  @defer(on interaction(btnInteraction)){
+  <app-heavy-loaders-fast cssClass="bg-blue-500/50 h-20">
+    <span>On Interaction</span>
+  </app-heavy-loaders-fast>
+  } @placeholder{
+  <div class="w-full h-20 bg-purple-100">Click en el div</div>
+  }
+</section>
+
+<section class="mt-7">
+  <h1 class="text-xl">Hover</h1>
+  <hr class="my-2" />
+  <button #btnHover class="p-2 mb-4 bg-orange-400 rounded">Hover me!</button>
+  @defer(on hover(btnHover)){
+  <app-heavy-loaders-fast cssClass="bg-blue-500/50 h-20">
+    <span>On Interaction</span>
+  </app-heavy-loaders-fast>
+  } @placeholder{
+  <div class="w-full h-20 bg-purple-100">Click en el div</div>
+  }
+</section>
+
+<section class="mt-7">
+  <h1 class="text-xl">Hover</h1>
+  <hr class="my-2" />
+
+  @defer(on hover){
+  <app-heavy-loaders-fast cssClass="bg-blue-500/50 h-20">
+    <span>On Interaction</span>
+  </app-heavy-loaders-fast>
+  } @placeholder{
+  <div class="w-full h-20 bg-purple-100">Click en el div</div>
+  }
+</section>
+
+<section class="mt-7">
+  <h1 class="text-xl">Immediate</h1>
+  <hr class="my-2" />
+  @defer(on immediate){
+  <app-heavy-loaders-fast cssClass="bg-blue-500/50 h-20">
+    <span>On Interaction</span>
+  </app-heavy-loaders-fast>
+  } @placeholder{
+  <div class="w-full h-20 bg-purple-100">Click en el div</div>
+  }
+</section>
+
+<section class="mt-7">
+  <h1 class="text-xl">Timer 2s</h1>
+  <hr class="my-2" />
+
+  @defer(on timer(2000)){
+  <app-heavy-loaders-fast cssClass="bg-blue-500/50 h-20">
+    <span>On Interaction</span>
+  </app-heavy-loaders-fast>
+  } @placeholder{
+  <div class="w-full h-20 bg-purple-100">Timer 2s</div>
+  }
+</section>
