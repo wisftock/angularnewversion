@@ -1,3 +1,4 @@
+<app-title title="Control flow" />
 <section class="grid grid-cols-1 md:grid-cols-2 gap-3">
   <div class="p-5">
     <p class="text-2xl">Condicional if</p>
@@ -15,5 +16,33 @@
     } @else{
     <p>ocultar texto</p>
     }
+  </div>
+</section>
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="p-5">
+    <p class="text-2xl">Condicional switch</p>
+
+    @switch (grade()){ @case ('A') {
+    <p>Aprobo</p>
+
+    } @case ('B') {
+    <p>Reprobo</p>
+
+    } @case ('C') {
+    <p>Cursando</p>
+    } }
+  </div>
+</section>
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="p-5">
+    <p class="text-2xl">Condicional for</p>
+
+    <ul>
+      @for(item of tecnologia(); track $index){
+      <li>{{ item }}</li>
+      }
+    </ul>
   </div>
 </section>
