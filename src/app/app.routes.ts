@@ -10,8 +10,8 @@ export const routes: Routes = [
         title: 'Change detection ',
         loadComponent: () =>
           import(
-            './dashboard/pages/chagen-detection/chagen-detection.component'
-          ).then((c) => c.ChagenDetectionComponent),
+            './dashboard/pages/change-detection/change-detection.component'
+          ).then((c) => c.ChangeDetectionComponent),
       },
       {
         path: 'control-flow',
