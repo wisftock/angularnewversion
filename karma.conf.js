@@ -65,6 +65,11 @@ module.exports = function (config) {
     logLevel: config.LOG_DEBUG,
     browsers: ["PhantomJS"],
     customLaunchers: {
+      ChromeHeadlessCI: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox"],
+      },
+
       OmniChrome: {
         base: "Chrome",
         flags: [
