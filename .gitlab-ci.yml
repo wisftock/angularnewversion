@@ -34,6 +34,10 @@ test:
   image: node:18
   before_script:
     - npm install -g karma-cli
+    - apt-get update
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - apt install -y ./google-chrome*.deb;
+    - export CHROME_BIN=/usr/bin/google-chrome
   script:
     - npm install
     # - karma start karma.conf.js --single-run --reporters junit
