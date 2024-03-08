@@ -27,6 +27,6 @@ jobs:
     - name: Build # Paso para construir el proyecto Angular
       run: npm run build -- --prod
       
-    - name: Testing
+    - name: Testing # Prueba para testing
       run: npm run test:ci
     
