@@ -1,41 +1,95 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/1.0/config/configuration-file.html
-
 module.exports = function (config) {
   config.set({
-    basePath: "",
-    frameworks: ["jasmine", "@angular-devkit/build-angular"],
-    plugins: [
-      require("karma-jasmine"),
-      require("karma-chrome-launcher"),
-      require("karma-jasmine-html-reporter"),
-      require("karma-coverage"),
-      require("@angular-devkit/build-angular/plugins/karma"),
-    ],
-    client: {
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+    frameworks: ["jasmine-jquery", "jasmine", "fixture"],
+    plugins: ["karma-"],
+    preprocessors: {
+      "test/jasmine/spec/Rio/**/.js": ["babel"],
+      "src/webapp/Rio/js/.js": ["babel"],
+      "src/webapp/Rio/js/!(vendor|component)/**/.js": ["babel"],
     },
-    jasmineHtmlReporter: {
-      suppressAll: true, // removes the duplicated traces
-    },
-    coverageReporter: {
-      dir: require("path").join(__dirname, "./coverage/profanis-yt"),
-      subdir: ".",
-      reporters: [{ type: "html" }, { type: "text-summary" }],
-    },
-    reporters: ["progress", "kjhtml"],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ["Chrome", "ChromeHeadless", "ChromeHeadlessCI"],
-    singleRun: false,
-    restartOnFileChange: true,
-    customLaunchers: {
-      ChromeHeadlessCI: {
-        base: "ChromeHeadless",
-        flags: ["--no-sandbox"],
+    babelPreprocessor: {
+      options: {
+        sourceMap: "inline",
+        presets: ["@babel/preset-env"],
+        plugins: config.server
+          ? [
+              "@babel/plugin-proposal-optional-chaining",
+              "@babel/plugin-proposal-nullish-coalescing-operator",
+            ]
+          : [
+              [
+                "istanbul",
+                {
+                  exclude: ["test/jasmine/spec/**/*.js"],
+                },
+              ],
+              "@babel/plugin-proposal-optional-chaining",
+              "@babel/plugin-proposal-nullish-coalescing-operator",
+            ],
+        overrides: [
+          {
+            sourceType: "script",
+          },
+        ],
       },
     },
+    coverageIstanbulReporter: {
+      reports: ["html", "cobertura", "text-summary"],
+      dir: "target/coverage/rio/",
+      thresholds: {
+        global: {
+          lines: 99.17,
+          statements: 99.14,
+          branches: 94.17,
+          functions: 98,
+        },
+      },
+    },
+    specReporter: {
+      suppressErrorSummary: false,
+      suppressFailed: false,
+      suppressPassed: false,
+      suppressSkipped: process.env.NODE_ENV === "debug",
+      showSpecTiming: false,
+      failFast: false,
+    },
+    client: {
+      jasmine: {
+        random: false,
+        hideDisabled: true,
+      },
+    },
+    reporters: ["progress", "coverage-istanbul", "spec", "summary", "kjhtml"],
+    port: 9876, // karma web server port
+    colors: true,
+    logLevel: config.LOG_DEBUG,
+    browsers: ["PhantomJS"],
+    customLaunchers: {
+      OmniChrome: {
+        base: "Chrome",
+        flags: [
+          "--start-maximized",
+          "--allow-file-access-from-files",
+          "--disable-translate",
+          "--disable-extensions",
+          "--remote-debugging-port=9223",
+          "--auto-open-devtools-for-tabs",
+          "http://localhost:9876/debug.html",
+        ],
+      },
+    },
+    autoWatch: true,
+    singleRun: false,
+    concurrency: Infinity,
   });
 };
+
+// browsers: ["Chrome", "ChromeHeadless", "ChromeHeadlessCI"],
+//     singleRun: false,
+//     restartOnFileChange: true,
+//     customLaunchers: {
+//       ChromeHeadlessCI: {
+//         base: "ChromeHeadless",
+//         flags: ["--no-sandbox"],
+//       },
+//     },
