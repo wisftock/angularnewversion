@@ -5,12 +5,8 @@ stages:
   - build
   - deploy
 #  - sonarqube_scan
-  # - sonarqube-check
-  # - sonarqube-vulnerability-report
-
-# define los comandos que se ejecutarán antes de cada tarea
-#before_script:
-#  - npm i -g @angular/cli
+# - sonarqube-check
+# - sonarqube-vulnerability-report
 
 # instala las dependencias
 install-dependencies:
@@ -18,7 +14,7 @@ install-dependencies:
   # especifica la imagen de Docker que se utilizará para ejecutar los scripts
   image: node:18
   script:
-    - npm i
+    - npm install
   # especificar que rama ejecutara este stage
   only:
     - master
@@ -32,27 +28,18 @@ install-dependencies:
       files:
         - package-lock.json
 
-
 #ejecutan las pruebas unitarias imcompleto...
-#test:
-#  stage: test
-#  image: timbru31/node-chrome
-#  script:
-#    - npm i -g @angular/cli
-#    - ng test --no-watch --progress=false --browsers=ChromeHeadless ChromeHeadlessNoSandbox
-  # especificar que rama ejecutara este stage
-#  only:
-#    - master
-  # se utiliza para cachear las dependencias de Node.js, lo que acelera los tiempos de construcción posteriores.
-#  cache:
-    # lista los directorios que deben ser cacheados
-#    paths:
-#      - node_modules/
-    # se utiliza para definir una clave única para el caché , si hay cambios en el .json se ejecuta de nuevo el npm i
-#    key:
-#      files:
-#        - package-lock.json
-#    policy: pull-push
+test:
+  stage: test
+  image: node:18
+  before_script:
+    - apt-get update
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - apt install -y ./google-chrome*.deb;
+    - export CHROME_BIN=/usr/bin/google-chrome
+  script:
+    - npm install
+    - npm run test -- --no-watch --browsers=ChromeHeadlessCI
 
 # instala las dependencias y compila la aplicación Angular en modo de producción.
 build:
@@ -79,7 +66,6 @@ build:
       - node_modules
       - $CI_PROJECT_DIR/dist/
     policy: pull-push
-
 #deploy:
 #  stage: deploy
 #  script:
