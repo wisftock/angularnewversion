@@ -25,7 +25,7 @@ jobs:
       run: npm install
 
     - name: Build # Paso para construir el proyecto Angular
-      run: npm run build -- --prod
+      run: npm run build
       
     - name: Testing # Prueba para testing
       run: npm run test:ci
