@@ -13,7 +13,6 @@ import { TitleComponent } from '@shared/title/title.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, TitleComponent],
   templateUrl: './change-detection.component.html',
-  styleUrl: './change-detection.component.css',
 })
 export class ChangeDetectionComponent {
   public currentFramework = computed(

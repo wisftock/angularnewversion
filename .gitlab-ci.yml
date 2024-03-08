@@ -32,21 +32,10 @@ install-dependencies:
 test:
   stage: test
   image: node:18
-  before_script:
-    - npm install -g karma-cli
-    - npm install karma@latest --save-dev
-    - npm install karma-chrome-launcher@latest --save-dev
-    - apt-get update
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt install -y ./google-chrome*.deb;
-    - export CHROME_BIN=/usr/bin/google-chrome
   script:
     - npm install
-    - karma start karma.conf.js --single-run --reporters junit
-    # - npm run test --no-watch --browsers=Headless
-  artifacts:
-    paths:
-      - test_results/
+    - npm run test:ci
+
 # instala las dependencias y compila la aplicación Angular en modo de producción.
 build:
   stage: build
