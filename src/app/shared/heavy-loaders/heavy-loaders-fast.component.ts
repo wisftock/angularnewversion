@@ -9,7 +9,4 @@ import { Component, Input } from '@angular/core';
 })
 export class HeavyLoadersFastComponent {
   @Input({ required: true }) cssClass!: string;
-  constructor() {
-    console.log('create');
-  }
 }

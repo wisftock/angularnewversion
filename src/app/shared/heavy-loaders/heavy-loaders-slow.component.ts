@@ -12,9 +12,6 @@ export class HeavyLoadersSlowComponent {
 
   constructor() {
     const start = Date.now();
-    while (Date.now() - start < 2000) {
-      console.log('bloqueando javascript');
-    }
-    console.log('Heavy loaders slow component');
+    while (Date.now() - start < 2000) {}
   }
 }
