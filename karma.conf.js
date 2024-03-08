@@ -19,7 +19,7 @@ module.exports = function (config) {
     plugins: ["karma-jasmine", "karma-chrome-launcher", "karma-junit-reporter"],
 
     // Navegadores a utilizar para ejecutar las pruebas
-    browsers: ["ChromeHeadless"],
+    browsers: ["Chrome", "ChromeHeadlessCI", "ChromeHeadless"],
 
     // Formatos de informes
     reporters: ["progress", "junit"],
@@ -48,5 +48,11 @@ module.exports = function (config) {
 
     // Tiempo de espera en milisegundos entre ejecución de pruebas
     concurrency: Infinity,
+    customLaunchers: {
+      ChromeHeadlessCI: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox"],
+      },
+    },
   });
 };
