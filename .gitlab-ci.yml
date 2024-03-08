@@ -42,8 +42,8 @@ test:
     - export CHROME_BIN=/usr/bin/google-chrome
   script:
     - npm install
-    # - karma start karma.conf.js --single-run --reporters junit
-    - npm run test --no-watch --browsers=Headless
+    - karma start karma.conf.js --single-run --reporters junit
+    # - npm run test --no-watch --browsers=Headless
   artifacts:
     paths:
       - test_results/
