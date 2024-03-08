@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main # Ejecutar la acción cuando se realiza un push en la rama main
+      - master # Ejecutar la acción cuando se realiza un push en la rama main
   pull_request:
     branches:
-      - main # Ejecutar la acción cuando se abre un pull request hacia la rama main
+      - master # Ejecutar la acción cuando se abre un pull request hacia la rama main
 
 jobs:
   build:
