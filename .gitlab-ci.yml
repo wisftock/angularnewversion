@@ -34,6 +34,8 @@ test:
   image: node:18
   before_script:
     - npm install -g karma-cli
+    - npm install karma@latest --save-dev
+    - npm install karma-chrome-launcher@latest --save-dev
     - apt-get update
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     - apt install -y ./google-chrome*.deb;

@@ -49,9 +49,18 @@ module.exports = function (config) {
     // Tiempo de espera en milisegundos entre ejecución de pruebas
     concurrency: Infinity,
     customLaunchers: {
-      Headless: {
-        base: "ChromeHeadless",
-        flags: ["--no-sandbox"],
+      // Headless: {
+      //   base: "ChromeHeadless",
+      //   flags: ["--no-sandbox"],
+      // },
+      ChromeHeadless: {
+        base: "Chrome",
+        flags: [
+          "--headless",
+          "--disable-gpu",
+          "--no-sandbox",
+          "--disable-setuid-sandbox",
+        ],
       },
     },
   });
