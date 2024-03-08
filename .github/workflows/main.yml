@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main # Ejecutar la acción cuando se realiza un push en la rama main
+  pull_request:
+    branches:
+      - main # Ejecutar la acción cuando se abre un pull request hacia la rama main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Selecciona el entorno de ejecución (en este caso, Ubuntu)
+
+    steps:
+    - name: Checkout code # Paso para clonar el repositorio en el entorno de ejecución
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js # Paso para configurar Node.js en el entorno de ejecución
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies # Paso para instalar las dependencias del proyecto Angular
+      run: npm install
+
+    - name: Build # Paso para construir el proyecto Angular
+      run: npm run build -- --prod
+      
+    - name: Testing
+      run: npm run test:ci
+    
